@@ -12,7 +12,9 @@ export default class TrackPage extends Component {
     super();
 
     this.state = {
-      info: MusicStore.getSpecific()
+      topTracks: MusicStore.getTopTracks(),
+      info: MusicStore.getSpecific(),
+      type: MusicStore.getSpecificType()
     }
 
     this._onChange = this._onChange.bind(this);
@@ -24,12 +26,16 @@ export default class TrackPage extends Component {
     MusicActions.searchSpecific(type, this.props.params.id);
     MusicStore.startListening(this._onChange);
   }
+
   componentWillUnmount() {
     MusicStore.stopListening(this._onChange);
   }
 
   _onChange() {
-    this.setState({ info: MusicStore.getSpecific() });
+    this.setState({
+      info: MusicStore.getSpecific(),
+      type: MusicStore.getSpecificType()
+    });
   }
 
   render() {

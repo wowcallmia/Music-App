@@ -5,6 +5,7 @@ import * as types from '../actions/ActionTypes';
 let _searchResults = undefined;
 let _searchResultsType = undefined;
 let _specific = undefined;
+let _specificType = undefined;
 
 class MusicStore extends EventEmitter {
   constructor() {
@@ -19,7 +20,9 @@ class MusicStore extends EventEmitter {
           this.emit('CHANGE');
           break;
         case(types.RECEIVE_SPECIFIC):
+          console.log('HELLO');
           _specific = payload.data;
+          _specificType = payload.type;
           console.log('_specific:', _specific)
           this.emit('CHANGE');
           break;
@@ -38,11 +41,17 @@ class MusicStore extends EventEmitter {
   getAllSearchResults() {
     return _searchResults;
   }
+
   getResultsType(){
     return _searchResultsType;
   }
+  
   getSpecific(){
     return _specific;
+  }
+
+  getSpecificType(){
+    return _specificType;
   }
 
 }

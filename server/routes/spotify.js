@@ -14,7 +14,7 @@ router.route('/search')
 router.route('/specific')
   .get((req, res) =>{
     let { id, type } = req.query;
-    axios.get(`http://api.spotify.com/v1/${type}/${id}`)
+    axios.get(`http://api.spotify.com/v1/${type}s/${id}`)
       .then(res => {
         console.log('res.data:', res.data)
         return res.data

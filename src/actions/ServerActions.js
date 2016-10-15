@@ -12,7 +12,7 @@ const ServerActions = {
     console.log('SERVERACTIONS');
     AppDispatcher.dispatch({
       type: types.RECEIVE_SPECIFIC,
-      payload: { results, type }
+      payload: { data, type }
     });
   }
 }
