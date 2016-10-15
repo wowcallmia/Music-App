@@ -3,14 +3,14 @@ import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-require('./stores/TranslatedStore');
+require('./stores/ThingStore');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import App from './components/App';
-import UploadPage from './components/UploadPage';
 import SplashPage from './components/SplashPage';
+import SearchPage from './components/SearchPage';
 
 
 render(
@@ -18,7 +18,7 @@ render(
     <Router history={browserHistory}>
         <Route path='/' component={App}>
           <IndexRoute component={SplashPage} />
-          <Route path='/upload' component={UploadPage} />
+          <Route path='/search' component={SearchPage} />
         </Route>
     </Router>
   </MuiThemeProvider>,

@@ -9,7 +9,6 @@ class NavBar extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <AppBar
         title="Title"
@@ -18,6 +17,7 @@ class NavBar extends Component {
       >
         <Tabs>
           <Tab className="Tab" label="Home" onClick={RouteActions.route.bind(null, '/')} />
+          <Tab className="Tab" label="Search" onClick={RouteActions.route.bind(null, '/search')} />
         </Tabs>
       </AppBar>
     );

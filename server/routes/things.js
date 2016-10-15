@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-import Thing from '../models/Thing';
+const Thing = require('../models/Thing');
 
 router.route('/')
   .get((req, res) =>{
