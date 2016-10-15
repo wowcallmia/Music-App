@@ -3,9 +3,15 @@ import * as types from './ActionTypes';
 
 const ServerActions = {
   receiveSearchResults(results, type) {
-    console.log('INSIDE SERVER ACTIONS');
     AppDispatcher.dispatch({
       type: types.RECEIVE_SEARCH_RESULTS,
+      payload: { results, type }
+    });
+  },
+  receiveSpecific(data, type) {
+    console.log('SERVERACTIONS');
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_SPECIFIC,
       payload: { results, type }
     });
   }

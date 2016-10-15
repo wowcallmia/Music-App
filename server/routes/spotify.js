@@ -11,4 +11,16 @@ router.route('/search')
       .catch(console.error)
   })
 
+router.route('/specific')
+  .get((req, res) =>{
+    let { id, type } = req.query;
+    axios.get(`http://api.spotify.com/v1/${type}/${id}`)
+      .then(res => {
+        console.log('res.data:', res.data)
+        return res.data
+      })
+      .then(data => res.send(data))
+      .catch(console.error)
+  })
+
 module.exports = router;

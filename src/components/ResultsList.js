@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 
-import MusicStore from '../stores/MusicStore'
-import MusicActions from '../actions/MusicActions'
+import MusicStore from '../stores/MusicStore';
+import MusicActions from '../actions/MusicActions';
+import RouteActions from '../actions/RouteActions';
 import { List, ListItem, Avatar } from 'material-ui';
 import AvPlayArrow from 'material-ui/svg-icons/av/play-arrow';
+import AvPause from 'material-ui/svg-icons/av/pause';
+import $ from 'jquery';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+
 
 export default class ResultsList extends Component {
   constructor(){
@@ -39,8 +43,16 @@ export default class ResultsList extends Component {
     });
   }
 
-  playPreview() {
-    console.log('play');
+  playPreview(e) {
+    let audios = document.getElementById('MainList').getElementsByTagName('audio');
+    if (audios.length) {
+      for (let i = 0; i < audios.length; i++) {
+        audios[i].pause();
+      }
+    }
+    let audio = new Audio(e.target.parentNode.id);
+    $('#audioRoot').append(audio);
+    audio.play();
   }
 
   handleOpen(imgUrl) {
@@ -57,40 +69,56 @@ export default class ResultsList extends Component {
 
 
   render() {
-    console.log('this.state.selectedIcon:', this.state.selectedIcon)
     const {results, type} = this.state;
 
     const customContentStyle = {
-      width: '300px',
+      width: '300px'
     };
 
     let Results = [];
     if (results) {
+      let imgUrl;
       Results = results.map((r, i) => {
         switch(type) {
           case 'track':
+            imgUrl = r.album.images.length>1?r.album.images[1].url:r.album.images.url;
             return (
-              <div key={i}>
+              <div key={r.id}>
                 <ListItem
-                  key={i}
+                  onClick={RouteActions.route.bind(null, `/track/${r.id}`)}
                   primaryText={r.name}
                   secondaryText={r.artists[0].name}
-                  leftAvatar={ <Avatar src={r.album.images[1].url}
+                  leftAvatar={ <Avatar src={imgUrl}
                     onTouchTap={this.handleOpen}
-                    onMouseOver={this.updateSelectedIcon.bind(null, r.album.images[1].url)}
+                    onMouseOver={this.updateSelectedIcon.bind(null, imgUrl)}
                   />}
-                  rightIcon={<AvPlayArrow onClick={this.playPreview}/>}
+                  rightIcon={<AvPlayArrow onClick={this.playPreview} id={r.preview_url}/>}
+                />
+                <div id="audioRoot"></div>
+              </div>
+            );
+            break;
+          case 'artist':
+            imgUrl = r.images.length>1 ? r.images[1].url : r.images.url;
+            return (
+              <div key={r.id}>
+                <ListItem
+                  primaryText={r.name}
+                  secondaryText={r.genres[0]}
+                  leftAvatar={ <Avatar src={imgUrl}
+                    onTouchTap={this.handleOpen}
+                    onMouseOver={this.updateSelectedIcon.bind(null, imgUrl)}
+                  />}
                 />
               </div>
             );
             break;
-
         }
       })
     }
     return (
       <div>
-        <List>
+        <List id='MainList'>
           {Results}
         </List>
         <Dialog

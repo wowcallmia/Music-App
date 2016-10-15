@@ -11,6 +11,7 @@ injectTapEventPlugin();
 import App from './components/App';
 import SplashPage from './components/SplashPage';
 import SearchPage from './components/SearchPage';
+import TrackPage from './components/TrackPage';
 
 
 render(
@@ -19,6 +20,7 @@ render(
         <Route path='/' component={App}>
           <IndexRoute component={SplashPage} />
           <Route path='/search' component={SearchPage} />
+          <Route path='/track/:id' component={TrackPage} />
         </Route>
     </Router>
   </MuiThemeProvider>,

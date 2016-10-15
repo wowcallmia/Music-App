@@ -7,6 +7,13 @@ const API = {
       .then(res => res.data)
       .then(data => ServerActions.receiveSearchResults(data, type))
       .catch(console.error)
+  },
+  searchSpecific(type, id) {
+    console.log('API');
+    axios.get(`/api/spotify/specific?id=${id}&type=${type}`)
+      .then(res => res.data)
+      .then(data => ServerActions.receiveSpecific(data, type))
+      .catch(console.error)
   }
 }
 
