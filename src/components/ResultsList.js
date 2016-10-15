@@ -16,12 +16,14 @@ export default class ResultsList extends Component {
     this.state = {
       results: MusicStore.getAllSearchResults(),
       type: MusicStore.getResultsType(),
-      open: false
+      open: false,
+      selectedIcon: undefined
     };
     this._onChange = this._onChange.bind(this);
     this.playPreview = this.playPreview.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.updateSelectedIcon = this.updateSelectedIcon.bind(this);
   }
 
   componentWillMount() {
@@ -41,7 +43,7 @@ export default class ResultsList extends Component {
     console.log('play');
   }
 
-  handleOpen() {
+  handleOpen(imgUrl) {
     this.setState({open: true});
   }
 
@@ -49,24 +51,37 @@ export default class ResultsList extends Component {
     this.setState({open: false});
   }
 
+  updateSelectedIcon(imgUrl) {
+    this.setState({ selectedIcon: imgUrl })
+  }
+
+
   render() {
+    console.log('this.state.selectedIcon:', this.state.selectedIcon)
     const {results, type} = this.state;
-    console.log('results, type:', results, type);
+
+    const customContentStyle = {
+      width: '300px',
+    };
+
     let Results = [];
     if (results) {
       Results = results.map((r, i) => {
         switch(type) {
           case 'track':
             return (
-              <ListItem
-              key={i}
-              primaryText={r.name}
-              secondaryText={r.artists[0].name}
-              leftAvatar={ <Avatar src={r.album.images[1].url}
-                onTouchTap={this.handleOpen}
-              />}
-              rightIcon={<AvPlayArrow onClick={this.playPreview}/>}
-              />
+              <div key={i}>
+                <ListItem
+                  key={i}
+                  primaryText={r.name}
+                  secondaryText={r.artists[0].name}
+                  leftAvatar={ <Avatar src={r.album.images[1].url}
+                    onTouchTap={this.handleOpen}
+                    onMouseOver={this.updateSelectedIcon.bind(null, r.album.images[1].url)}
+                  />}
+                  rightIcon={<AvPlayArrow onClick={this.playPreview}/>}
+                />
+              </div>
             );
             break;
 
@@ -82,8 +97,9 @@ export default class ResultsList extends Component {
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
+          contentStyle={customContentStyle}
         >
-          <img src={results ? results[0].album.images[1].url : ''}/>
+          <img src={this.state.selectedIcon} className='modalImg'/>
         </Dialog>
       </div>
     )
