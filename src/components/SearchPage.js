@@ -3,12 +3,15 @@ import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+import MusicActions from '../actions/MusicActions';
+import ResultsList from './ResultsList';
+
 export default class SearchPage extends Component {
   constructor(){
     super();
 
     this.state = {
-      searchType: 'song',
+      searchType: 'track',
       search: ''
 
     }
@@ -20,7 +23,8 @@ export default class SearchPage extends Component {
 
   submitSearch() {
     // make api call to spotify
-    console.log('search:', this.state.search, this.state.searchType)
+    let { search, searchType } = this.state;
+    MusicActions.searchMusic(search, searchType);
   }
 
   updateSearchType() {
@@ -47,7 +51,7 @@ export default class SearchPage extends Component {
         style={styles.customWidth}
         autoWidth={false}
       >
-        <MenuItem value='song' primaryText="Songs" />
+        <MenuItem value='track' primaryText="Songs" />
         <MenuItem value='artist' primaryText="Artist" />
         <MenuItem value='album' primaryText="Albums" />
         <MenuItem value='playlist' primaryText="Playlists" />
@@ -70,6 +74,7 @@ export default class SearchPage extends Component {
 
           <button onClick={this.submitSearch}></button>
         </span>
+        <ResultsList/>
       </div>
     )
   }

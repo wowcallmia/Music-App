@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-require('./stores/ThingStore');
+require('./stores/MusicStore');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
