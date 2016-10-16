@@ -2,19 +2,21 @@ import AppDispatcher from '../AppDispatcher';
 import { EventEmitter } from 'events';
 import * as types from '../actions/ActionTypes';
 
-let _searchResults = undefined;
-let _searchResultsType = undefined;
+let _track = undefined;
+let _trackType = undefined;
+let _features = undefined;
 
-class MusicStore extends EventEmitter {
+class TrackStore extends EventEmitter {
   constructor() {
     super();
 
     AppDispatcher.register(action => {
       let { type, payload } = action;
       switch(type) {
-        case(types.RECEIVE_SEARCH_RESULTS):
-          _searchResults = payload.results[`${payload.type}s`].items;
-          _searchResultsType = payload.type;
+        case(types.RECEIVE_SPECIFIC):
+          console.log('HELLO');
+          _track = payload.data;
+          _trackType = payload.type;
           this.emit('CHANGE');
           break;
       }
@@ -29,14 +31,18 @@ class MusicStore extends EventEmitter {
     this.removeListener('CHANGE', cb);
   }
 
-  getAllSearchResults() {
-    return _searchResults;
+  getTrack(){
+    return _track;
   }
 
-  getResultsType(){
-    return _searchResultsType;
+  getTrackType(){
+    return _trackType;
+  }
+
+  getFeatures(){
+    return _features;
   }
 
 }
 
-export default new MusicStore();
+export default new TrackStore();

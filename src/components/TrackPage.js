@@ -4,7 +4,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 import MusicActions from '../actions/MusicActions';
-import MusicStore from '../stores/MusicStore';
+import TrackStore from '../stores/TrackStore';
 import ResultsList from './ResultsList';
 
 export default class TrackPage extends Component {
@@ -12,36 +12,39 @@ export default class TrackPage extends Component {
     super();
 
     this.state = {
-      topTracks: MusicStore.getTopTracks(),
-      info: MusicStore.getSpecific(),
-      type: MusicStore.getSpecificType()
+      features: TrackStore.getFeatures(),
+      info: TrackStore.getTrack(),
+      type: TrackStore.getTrackType()
     }
 
     this._onChange = this._onChange.bind(this);
-
   }
 
   componentWillMount() {
     let type = this.props.route.path.split('/')[1];
     MusicActions.searchSpecific(type, this.props.params.id);
-    MusicStore.startListening(this._onChange);
+    TrackStore.startListening(this._onChange);
   }
 
   componentWillUnmount() {
-    MusicStore.stopListening(this._onChange);
+    TrackStore.stopListening(this._onChange);
   }
 
   _onChange() {
     this.setState({
-      info: MusicStore.getSpecific(),
-      type: MusicStore.getSpecificType()
+      info: TrackStore.getTrack(),
+      type: TrackStore.getTrackType()
     });
   }
 
   render() {
-    console.log('this.state:', this.state)
+    console.log('this.state:', this.state);
     return (
-      <div>HeLLO</div>
+      <div>
+        {/* <div className="progress">
+          <div className="progress-bar progress-bar-info" style={{width: '50%'}}></div>
+        </div> */}
+      </div>
     )
   }
 }
