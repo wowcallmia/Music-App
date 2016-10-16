@@ -23,12 +23,18 @@ export default class TrackPage extends Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let { track } = this.state;
     let type = this.props.route.path.split('/')[1];
     MusicActions.searchSpecific(type, this.props.params.id);
     MusicActions.getTrackFeatures(this.props.params.id);
     TrackStore.startListening(this._onChange);
+    console.log('11111this.state:', this.state)
+    // window.setTimeout(
+      // function() {
+        console.log('TIMEOUT this.state:', this.state)
+        MusicActions.getVideoId(`${track.name} ${track.artists[0].name}`);
+      // }, 10000);
   }
 
   componentWillUnmount() {
@@ -44,18 +50,18 @@ export default class TrackPage extends Component {
   }
 
   render() {
-    console.log('this.state:', this.state);
+    console.log('33333this.state:', this.state);
     let { track, type, features, videoId } = this.state;
-    if (track) {
-      MusicActions.getVideoId(`${track.name} ${track.artists[0].name}`);
-    }
+    // if (track) {
+    //   MusicActions.getVideoId(`${track.name} ${track.artists[0].name}`);
+    // }
     if (track) {
       return (
         <div className='container'>
         <h1>{track.name} ({track.artists[0].name})</h1>
 
         {/* <YoutubeVideo videoId={videoId}/> */}
-        <YoutubeVideo videoId='2uneYz201p0'/>
+        <YoutubeVideo videoId={videoId}/>
 
         {/* <div className="progress">
         <div className="progress-bar progress-bar-info" style={{width: '50%'}}></div>
