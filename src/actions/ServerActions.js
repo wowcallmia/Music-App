@@ -9,10 +9,15 @@ const ServerActions = {
     });
   },
   receiveSpecific(data, type) {
-    console.log('SERVERACTIONS');
     AppDispatcher.dispatch({
       type: types.RECEIVE_SPECIFIC,
       payload: { data, type }
+    });
+  },
+  receiveTrackFeatures(data) {
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_TRACK_FEATURES,
+      payload: { data }
     });
   }
 }

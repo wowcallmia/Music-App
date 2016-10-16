@@ -23,4 +23,16 @@ router.route('/specific')
       .catch(console.error)
   })
 
+router.route('/track-features')
+  .get((req, res) =>{
+    let { id } = req.query;
+    axios.get(`http://api.spotify.com/v1/audio-features/${id}`)
+      .then(res => {
+        console.log('res.data:', res.data)
+        return res.data
+      })
+      .then(data => res.send(data))
+      .catch(console.error)
+  })
+
 module.exports = router;

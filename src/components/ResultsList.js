@@ -85,9 +85,9 @@ export default class ResultsList extends Component {
             return (
               <div key={r.id}>
                 <ListItem
-                  onClick={RouteActions.route.bind(null, `/track/${r.id}`)}
-                  primaryText={r.name}
-                  secondaryText={r.artists[0].name}
+                  // onClick={RouteActions.route.bind(null, `/track/${r.id}`)}
+                  primaryText={<p onClick={RouteActions.route.bind(null, `/track/${r.id}`)}>{r.name}</p>}
+                  secondaryText={<p onClick={RouteActions.route.bind(null, `/artist/${r.artists[0].id}`)}>{r.artists[0].name}</p>}
                   leftAvatar={ <Avatar src={imgUrl}
                     onTouchTap={this.handleOpen}
                     onMouseOver={this.updateSelectedIcon.bind(null, imgUrl)}

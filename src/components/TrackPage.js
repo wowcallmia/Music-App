@@ -12,9 +12,9 @@ export default class TrackPage extends Component {
     super();
 
     this.state = {
-      features: TrackStore.getFeatures(),
       info: TrackStore.getTrack(),
-      type: TrackStore.getTrackType()
+      type: TrackStore.getTrackType(),
+      features: TrackStore.getFeatures()
     }
 
     this._onChange = this._onChange.bind(this);
@@ -23,6 +23,7 @@ export default class TrackPage extends Component {
   componentWillMount() {
     let type = this.props.route.path.split('/')[1];
     MusicActions.searchSpecific(type, this.props.params.id);
+    MusicActions.getTrackFeatures(this.props.params.id);
     TrackStore.startListening(this._onChange);
   }
 
@@ -33,7 +34,8 @@ export default class TrackPage extends Component {
   _onChange() {
     this.setState({
       info: TrackStore.getTrack(),
-      type: TrackStore.getTrackType()
+      type: TrackStore.getTrackType(),
+      features: TrackStore.getFeatures()
     });
   }
 

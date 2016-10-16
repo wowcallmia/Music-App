@@ -14,9 +14,12 @@ class TrackStore extends EventEmitter {
       let { type, payload } = action;
       switch(type) {
         case(types.RECEIVE_SPECIFIC):
-          console.log('HELLO');
           _track = payload.data;
           _trackType = payload.type;
+          this.emit('CHANGE');
+          break;
+        case(types.RECEIVE_TRACK_FEATURES):
+          _features = payload.data;
           this.emit('CHANGE');
           break;
       }
