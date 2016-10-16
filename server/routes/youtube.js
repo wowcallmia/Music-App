@@ -10,7 +10,7 @@ router.route('/videoId')
         console.log('res.data:', res.data)
         return res.data
       })
-      // .then(data => res.send(data))
+      .then(data => res.send(data))
       .catch(console.error)
   })
 
