@@ -70,7 +70,7 @@ export default class ResultsList extends Component {
 
   render() {
     const {results, type} = this.state;
-
+    console.log('results(resultslist73):', results);
     const customContentStyle = {
       width: '300px'
     };
@@ -85,7 +85,6 @@ export default class ResultsList extends Component {
             return (
               <div key={r.id}>
                 <ListItem
-                  // onClick={RouteActions.route.bind(null, `/track/${r.id}`)}
                   primaryText={<p onClick={RouteActions.route.bind(null, `/track/${r.id}`)}>{r.name}</p>}
                   secondaryText={<p onClick={RouteActions.route.bind(null, `/artist/${r.artists[0].id}`)}>{r.artists[0].name}</p>}
                   leftAvatar={ <Avatar src={imgUrl}
@@ -103,7 +102,7 @@ export default class ResultsList extends Component {
             return (
               <div key={r.id}>
                 <ListItem
-                  primaryText={r.name}
+                  primaryText={<p onClick={RouteActions.route.bind(null, `/artist/${r.id}`)}>{r.name}</p>}
                   secondaryText={r.genres[0]}
                   leftAvatar={ <Avatar src={imgUrl}
                     onTouchTap={this.handleOpen}

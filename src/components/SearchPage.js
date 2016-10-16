@@ -22,13 +22,11 @@ export default class SearchPage extends Component {
   }
 
   submitSearch() {
-    // make api call to spotify
     let { search, searchType } = this.state;
     MusicActions.searchMusic(search, searchType);
   }
 
   updateSearchType() {
-    // let { search } = this.refs;
     this.setState({ search: this.refs.search.value });
   }
 
@@ -57,21 +55,12 @@ export default class SearchPage extends Component {
         <MenuItem value='playlist' primaryText="Playlists" />
       </DropDownMenu>
         <span>
-          {/* <TextField
-            hintText=""
-            floatingLabelText="Search"
-            ref="search"
-            value={this.state.search}
-            onChange={this.updateSearchType}
-          /> */}
-
           <input
             type="text"
             ref="search"
             value={this.state.search}
             onChange={this.updateSearchType}
           />
-
           <button onClick={this.submitSearch}></button>
         </span>
         <ResultsList/>
