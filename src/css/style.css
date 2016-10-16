@@ -1,0 +1,22 @@
+.AppBar {
+  background-color: #686868 !important;
+}
+
+.AppBar h1 {
+  color: #fff !important;
+}
+
+.AppBar div {
+  background-color: #686868 !important;
+  margin-right: 20px;
+  margin-top: 2px;
+  color: #fff;
+}
+
+.Tab div {
+  color: #fff;
+}
+
+.modalImg {
+  width: 100%;
+}
