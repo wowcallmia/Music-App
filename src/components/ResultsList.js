@@ -70,7 +70,7 @@ export default class ResultsList extends Component {
 
   render() {
     const {results, type} = this.state;
-    console.log('results(resultslist73):', results);
+    //console.log('results(resultslist73):', results);
     const customContentStyle = {
       width: '300px'
     };
