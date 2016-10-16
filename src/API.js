@@ -19,6 +19,12 @@ const API = {
     .then(res => res.data)
     .then(data => ServerActions.receiveTrackFeatures(data))
     .catch(console.error)
+  },
+  getVideoId(query) {
+    axios.get(`/api/youtube/videoId?q=${query}`)
+      .then(res => res.data)
+      .then(data => ServerActions.receiveVideoId(data))
+      .catch(console.error)
   }
 }
 

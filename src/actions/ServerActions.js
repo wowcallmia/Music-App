@@ -19,6 +19,12 @@ const ServerActions = {
       type: types.RECEIVE_TRACK_FEATURES,
       payload: { data }
     });
+  },
+  receiveVideoId(id) {
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_VIDEO_ID,
+      payload: { id }
+    });
   }
 }
 

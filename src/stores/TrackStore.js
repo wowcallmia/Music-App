@@ -5,6 +5,7 @@ import * as types from '../actions/ActionTypes';
 let _track = undefined;
 let _trackType = undefined;
 let _features = undefined;
+let _videoId = undefined;
 
 class TrackStore extends EventEmitter {
   constructor() {
@@ -20,6 +21,10 @@ class TrackStore extends EventEmitter {
           break;
         case(types.RECEIVE_TRACK_FEATURES):
           _features = payload.data;
+          this.emit('CHANGE');
+          break;
+        case(types.RECEIVE_VIDEO_ID):
+          _videoId = payload.id;
           this.emit('CHANGE');
           break;
       }
@@ -44,6 +49,10 @@ class TrackStore extends EventEmitter {
 
   getFeatures(){
     return _features;
+  }
+
+  getVideoId(){
+    return _videoId;
   }
 
 }
