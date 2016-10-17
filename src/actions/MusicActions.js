@@ -6,7 +6,9 @@ const MusicActions = {
   searchMusic: API.searchMusic,
   searchSpecific: API.searchSpecific,
   getTrackFeatures: API.getTrackFeatures,
+  getAlbums: API.getAlbums,
   getVideoId: API.getVideoId,
+  getAlbumTracks: API.getAlbumTracks,
   clearStore () {
     AppDispatcher.dispatch({
       type: types.CLEAR_STORE,

@@ -107,7 +107,7 @@ export default class ResultsList extends Component {
                   leftAvatar={ <Avatar src={imgUrl}
                     onTouchTap={this.handleOpen}
                     onMouseOver={this.updateSelectedIcon.bind(null, imgUrl)}
-                  />}
+                               />}
                 />
               </div>
             );

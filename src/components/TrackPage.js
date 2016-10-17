@@ -74,7 +74,7 @@ console.log('Trackststtee', TrackStore.getTrack())
 
           {/* <div className="progress">
             <div className="progress-bar progress-bar-info" style={{width: '50%'}}></div>
-        </div> */}
+          </div> */}
         </div>
       );
     } else {

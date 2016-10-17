@@ -14,10 +14,22 @@ const API = {
       .then(data => ServerActions.receiveSpecific(data, type))
       .catch(console.error);
   },
+  getAlbums(id) {
+    axios.get(`/api/spotify/albums?id=${id}`)
+    .then(res => res.data)
+    .then(data => ServerActions.receiveAlbums(data))
+    .catch(console.error);
+  },
   getTrackFeatures(id) {
     axios.get(`/api/spotify/track-features?id=${id}`)
     .then(res => res.data)
     .then(data => ServerActions.receiveTrackFeatures(data))
+    .catch(console.error);
+  },
+  getAlbumTracks(id) {
+    axios.get(`/api/spotify/album-tracks?id=${id}`)
+    .then(res => res.data)
+    .then(data => ServerActions.receiveAlbumTracks(data))
     .catch(console.error);
   },
 

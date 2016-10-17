@@ -43,17 +43,17 @@ export default class SearchPage extends Component {
 
     return (
       <div className='container'>
-      <DropDownMenu
-        value={this.state.searchType}
-        onChange={this.handleChange}
-        style={styles.customWidth}
-        autoWidth={false}
-      >
-        <MenuItem value='track' primaryText="Songs" />
-        <MenuItem value='artist' primaryText="Artist" />
-        <MenuItem value='album' primaryText="Albums" />
-        <MenuItem value='playlist' primaryText="Playlists" />
-      </DropDownMenu>
+        <DropDownMenu
+          value={this.state.searchType}
+          onChange={this.handleChange}
+          style={styles.customWidth}
+          autoWidth={false}
+        >
+          <MenuItem value='track' primaryText="Songs" />
+          <MenuItem value='artist' primaryText="Artist" />
+          <MenuItem value='album' primaryText="Albums" />
+          <MenuItem value='playlist' primaryText="Playlists" />
+        </DropDownMenu>
         <span>
           <input
             type="text"

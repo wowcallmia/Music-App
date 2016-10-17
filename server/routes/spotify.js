@@ -12,6 +12,30 @@ router.route('/search')
       .catch(console.error)
   })
 
+  router.route('/albums')
+    .get((req, res) =>{
+      let { id, type } = req.query;
+      axios.get(`http://api.spotify.com/v1/artists/${id}/albums`)
+        .then(res => {
+          console.log('API CALL res.data: ', res.data)
+          return res.data
+        })
+        .then(data => res.send(data))
+        .catch(console.error)
+    })
+
+    router.route('/album-tracks')
+      .get((req, res) =>{
+        let { id} = req.query;
+        axios.get(`http://api.spotify.com/v1/albums/${id}/tracks`)
+          .then(res => {
+            console.log('API CALL res.data: ', res.data)
+            return res.data
+          })
+          .then(data => res.send(data))
+          .catch(console.error)
+      })
+
 router.route('/specific')
   .get((req, res) =>{
     let { id, type } = req.query;

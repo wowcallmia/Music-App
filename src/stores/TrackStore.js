@@ -6,6 +6,8 @@ let _track = undefined;
 let _trackType = undefined;
 let _features = undefined;
 let _videoId = undefined;
+let _albums = undefined;
+let _albumTracks = undefined;
 
 class TrackStore extends EventEmitter {
   constructor() {
@@ -26,6 +28,16 @@ class TrackStore extends EventEmitter {
         case(types.RECEIVE_VIDEO_ID):
           console.log('GOT VIDEO ID: ', payload.id);
           _videoId = payload.id;
+          this.emit('CHANGE');
+          break;
+          case(types.RECEIVE_ALBUMS):
+            console.log('GOT ALBUM: ', payload.data);
+            _albums = payload.data;
+            this.emit('CHANGE');
+            break;
+          case(types.RECEIVE_ALBUM_TRACKS):
+          console.log('GOT ALBUM TRACKS', payload.data)
+          _albumTracks = payload.data;
           this.emit('CHANGE');
           break;
         case (types.CLEAR_STORE):
@@ -62,6 +74,12 @@ class TrackStore extends EventEmitter {
 
   getVideoId(){
     return _videoId;
+  }
+  getAlbums(){
+    return _albums;
+  }
+  getAlbumTracks(){
+    return _albumTracks;
   }
 
 }

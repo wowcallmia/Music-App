@@ -14,6 +14,18 @@ const ServerActions = {
       payload: { data, type }
     });
   },
+  receiveAlbums(data) {
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_ALBUMS,
+      payload: { data }
+    });
+  },
+  receiveAlbumTracks(data) {
+    AppDispatcher.dispatch({
+      type: types.RECEIVE_ALBUM_TRACKS,
+      payload: { data }
+    });
+  },
   receiveTrackFeatures(data) {
     AppDispatcher.dispatch({
       type: types.RECEIVE_TRACK_FEATURES,
