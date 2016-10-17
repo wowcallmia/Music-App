@@ -26,17 +26,19 @@ router.route('/specific')
 router.route('/track-features')
   .get((req, res) =>{
     let { id } = req.query;
+    let authToken = 'BQCbzjkaOsTMCM_AJuQL7DLI6KIxzYG52KEgPOM_YOIE9QK2qW69_xBTGuG0cJCmWGVWQiI02qHl_qX_z6pnE8-tZSBeqIBiYQET_kJpdplxtgoIuC0ECh9GvLZsmvj3rbWkTlzV2oE';
     axios.get(`https://api.spotify.com/v1/audio-features/${id}`,
       { headers:{
         Accept: 'application/json',
-        Authorization: 'Bearer BQCxtszOT3CzGHAgiH0NuZNututlOoKDjqrZyIC-WVw0KSE4zM2xGSRIRrFQUnf5_ExaZGm_kl6-sXGyoJ6nPbr7UM0CqFtemXx3pkt45C3r5XpNRJRvxTVwZ383cY6JOaYD0lLpQkY'
+        Authorization: `Bearer ${authToken}`
       }
     })
   .then(res => {
-          return res.data;
-        })
-        .then(data => res.send(data))
-        .catch(console.error)
+      console.log('res.data!!!!:', res.data)
+      return res.data;
+    })
+    .then(data => res.send(data))
+    .catch(console.error)
     })
 
 module.exports = router;

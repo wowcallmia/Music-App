@@ -9,14 +9,13 @@ export default class YoutubeVideo extends Component {
 
 
   _onReady(event) {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
 
   render() {
     const opts = {
-      height: '390',
-      width: '640',
+      height: '234',
+      width: '390',
       playerVars: {
         autoplay: 1
       }

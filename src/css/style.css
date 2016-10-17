@@ -20,3 +20,15 @@
 .modalImg {
   width: 100%;
 }
+
+.progressLabel {
+  padding-left: 30px;
+}
+
+.progress {
+  margin-bottom: 38px;
+}
+
+.progressBars {
+  margin-top: 10px;
+}
