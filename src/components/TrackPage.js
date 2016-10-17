@@ -13,7 +13,6 @@ export default class TrackPage extends Component {
   constructor(props){
     super(props);
 
-console.log('Trackststtee', TrackStore.getTrack())
     this.state = {
       track: undefined,
       type: undefined,
@@ -24,22 +23,15 @@ console.log('Trackststtee', TrackStore.getTrack())
   }
 
   componentWillMount() {
-    console.log('this.props: ', this.props)
     let type = this.props.route.path.split('/')[1];
     MusicActions.searchSpecific(type, this.props.params.id);
     MusicActions.getTrackFeatures(this.props.params.id);
     TrackStore.startListening(this._onChange);
-    // console.log('11111this.state:', this.state);
-     //window.setTimeout(
-    //   function() {
-  //    }, 5000);
   }
 
   componentWillUnmount() {
     TrackStore.stopListening(this._onChange);
     MusicActions.clearStore();
-    console.log('UNMOUNTED');
-
   }
 
   componentDidUpdate () {
@@ -56,13 +48,10 @@ console.log('Trackststtee', TrackStore.getTrack())
       type: TrackStore.getTrackType(),
       features: TrackStore.getFeatures(),
        videoId: TrackStore.getVideoId()
-
-
     });
-    console.log('videoId ALFJF', this.state.videoId);
   }
+
   render() {
-    console.log('33333this.state:', this.state);
     let { track, type, features, videoId } = this.state;
     if (track) {
       return (

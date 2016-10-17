@@ -24,7 +24,6 @@ class TrackStore extends EventEmitter {
           this.emit('CHANGE');
           break;
         case(types.RECEIVE_VIDEO_ID):
-          console.log('GOT VIDEO ID: ', payload.id);
           _videoId = payload.id;
           this.emit('CHANGE');
           break;
