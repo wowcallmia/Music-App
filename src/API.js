@@ -20,10 +20,18 @@ const API = {
     .then(data => ServerActions.receiveTrackFeatures(data))
     .catch(console.error);
   },
-
   getVideoId(query) {
     axios.get(`/api/youtube/videoId?q=${query}`)
       .then(res => {
+        return res.data
+      })
+      .then(data => ServerActions.receiveVideoId(data))
+      .catch(console.error)
+  },
+  getGeniusInfo(query) {
+    axios.get(`/api/genius/search?q=${query}`)
+      .then(res => {
+        console.log('res.dataGENIUS:', res.data)
         return res.data
       })
       .then(data => ServerActions.receiveVideoId(data))

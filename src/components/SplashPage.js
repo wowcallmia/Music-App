@@ -4,8 +4,10 @@ import {RaisedButton} from 'material-ui';
 export default class SplashPage extends Component {
   render() {
     return (
-      <div className="container">
-        <h1>SPLASH</h1>
+      <div className='splashPage'>
+        <div className="titleFrame"><h1 className='titles text-center'>MusicMusic</h1>
+          <h3 className='titles text-center'>A Music App</h3>
+          </div>
       </div>
     );
   }

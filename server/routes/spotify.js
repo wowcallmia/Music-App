@@ -6,19 +6,15 @@ router.route('/search')
   .get((req, res) =>{
     let { q, type } = req.query;
     axios.get(`http://api.spotify.com/v1/search?q=${encodeURI(q)}&type=${type}`)
-      // .then(res => res.data)
-      // .then(data => res.send(data))
       .then(response => res.send(response.data))
       .catch(console.error)
   })
 
 router.route('/specific')
-  .get((req, res) =>{
+  .get((req, res) => {
     let { id, type } = req.query;
     axios.get(`http://api.spotify.com/v1/${type}s/${id}`)
-      .then(res => {
-        return res.data
-      })
+      .then(res => res.data)
       .then(data => res.send(data))
       .catch(console.error)
   })
@@ -26,7 +22,7 @@ router.route('/specific')
 router.route('/track-features')
   .get((req, res) =>{
     let { id } = req.query;
-    let authToken = 'BQCbzjkaOsTMCM_AJuQL7DLI6KIxzYG52KEgPOM_YOIE9QK2qW69_xBTGuG0cJCmWGVWQiI02qHl_qX_z6pnE8-tZSBeqIBiYQET_kJpdplxtgoIuC0ECh9GvLZsmvj3rbWkTlzV2oE';
+    let authToken = 'BQBGXH2nVYeR7UBt8OrG_ON9A8MdcI397hv0f4MHzjmwplUB7aE3gSjOSEQTYxYsUOwgM19uZ-AMi_aLQrZcTsx6hYl4e1Lu_rq55glJjj2BsXDNKbqk0bUJVkTmQdZk5ZIYQ2s7YfWhLetijPOYYW-z2JsRLuH131H4LeeF2bgn4V9KGvDnEp_4lmnHpdM70fp-zi_YWVaBvvMreLaZLXj4dEOCfxzYSHHcVw-SYyKlPMYraAQaQlP7i2uIlDLWftUH4Eqj1nmGddTbRukHDPk02o6Tpb69c9x2zKbE1fn7ylNsFAo';
     axios.get(`https://api.spotify.com/v1/audio-features/${id}`,
       { headers:{
         Accept: 'application/json',

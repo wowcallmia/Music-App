@@ -1,5 +1,5 @@
 .AppBar {
-  background-color: #686868 !important;
+  background-color: #000 !important;
 }
 
 .AppBar h1 {
@@ -7,7 +7,7 @@
 }
 
 .AppBar div {
-  background-color: #686868 !important;
+  background-color: #000 !important;
   margin-right: 20px;
   margin-top: 2px;
   color: #fff;
@@ -21,14 +21,34 @@
   width: 100%;
 }
 
-.progressLabel {
+.progressLabels {
   padding-left: 30px;
 }
 
+.progressLabel {
+  line-height: 35px;;
+}
+
 .progress {
-  margin-bottom: 38px;
+  margin-bottom: 26px;
 }
 
 .progressBars {
-  margin-top: 10px;
+  margin-top: 13px;
+}
+
+.titles {
+  color: black;
+}
+
+.titleFrame {
+  padding-top: 300px;
+}
+
+.splashPage {
+  background-image: url('https://hd.unsplash.com/photo-1470229722913-7c0e2dbbafd3');
+  height: 800px;
+  width: 100%;
+  background-size: cover;
+  margin-top: -200px;
 }

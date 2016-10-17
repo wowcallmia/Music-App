@@ -11,7 +11,7 @@ class NavBar extends Component {
   render() {
     return (
       <AppBar
-        title="Title"
+        title="MusicMusic"
         className="AppBar"
         showMenuIconButton={false}
       >

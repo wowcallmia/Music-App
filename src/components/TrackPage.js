@@ -38,8 +38,9 @@ export default class TrackPage extends Component {
   componentDidUpdate () {
     let {track, videoId} = this.state;
 
-    if (track !== undefined && videoId === undefined) {
+    if (track && videoId === undefined) {
       MusicActions.getVideoId(`${track.name ? track.name : ""} ${track.artists[0].name}`)
+      MusicActions.getGeniusInfo(`${track.name ? track.name : ""} ${track.artists[0].name}`);
     }
   }
 
@@ -69,16 +70,12 @@ export default class TrackPage extends Component {
           <div className="col-xs-12 col-md-5">
             {videoId ? <YoutubeVideo videoId={videoId.items[0].id.videoId}/> : null}
           </div>
-          <div className="col-xs-5 col-md-2 progressLabel">
-            <h4>Popularity</h4>
-            <br/>
-            <h4>Danceability</h4>
-            <br/>
-            <h4>Energy</h4>
-            <br/>
-            <h4>Loudness</h4>
-            <br/>
-            <h4>Speechiness</h4>
+          <div className="col-xs-5 col-md-2 progressLabels">
+            <h4 className='progressLabel'>Popularity</h4>
+            <h4 className='progressLabel'>Danceability</h4>
+            <h4 className='progressLabel'>Energy</h4>
+            <h4 className='progressLabel'>Happiness</h4>
+            <h4 className='progressLabel'>Speechiness</h4>
           </div>
           <div className="col-xs-7 col-md-5 progressBars">
             <div className="progress">
@@ -92,13 +89,13 @@ export default class TrackPage extends Component {
               </div>
             </div>
             <div className="progress">
-              <div className="progress-bar progress-bar-energy" style={this.style(features?features.energy:0)}>
+              <div className="progress-bar progress-bar-info" style={this.style(features?features.energy:0)}>
                 {features?`${Math.floor(features.energy*100)}%`:''}
               </div>
             </div>
             <div className="progress">
-              <div className="progress-bar progress-bar-info" style={this.style(features?features.loudness:0)}>
-                {features?`${Math.floor(features.loudness*100)}%`:''}
+              <div className="progress-bar progress-bar-warning" style={this.style(features?features.valence:0)}>
+                {features?`${Math.floor(features.valence*100)}%`:''}
               </div>
             </div>
             <div className="progress">
@@ -106,6 +103,38 @@ export default class TrackPage extends Component {
                 {features?`${Math.floor(features.speechiness*100)}%`:''}
               </div>
             </div>
+          </div>
+          <div className="col-xs-12 col-md-4">
+            <table className="table">
+              <thead>
+                <tr className='text-center'>
+                  <th>More Info</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tempo</td>
+                  <td>{features?features.tempo:''}</td>
+                </tr>
+                <tr>
+                  <td>Mode</td>
+                  <td>{features?(features.mode?'Major':'Minor'):''}</td>
+                </tr>
+                <tr>
+                  <td>Acoustic</td>
+                  <td>{features?(+features.acousticness>=.6?'True':'False'):''}</td>
+                </tr>
+                <tr>
+                  <td>Instrumental</td>
+                  <td>{features?(+features.instrumentalness>=.5?'True':'False'):''}</td>
+                </tr>
+                <tr>
+                  <td>Live</td>
+                  <td>{features?(+features.liveness>=.8?'True':'False'):''}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       );

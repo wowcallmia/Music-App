@@ -12,7 +12,8 @@ const MusicActions = {
       type: types.CLEAR_STORE,
       payload: { types }
     });
-  }
+  },
+  getGeniusInfo: API.getGeniusInfo,
 
 }
 
